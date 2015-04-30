@@ -108,6 +108,19 @@
       browser[ie] = true;
     }
 
+    // version of IE browser, regardless of the current browser mode.
+    if (browser.msie) {
+      var trident = /trident\/[\w.]+/.exec(ua) || [];
+      var Trident_Tokens = {
+        "trident/7.0": "11.0",
+        "trident/6.0": "10.0",
+        "trident/5.0": "9.0",
+        "trident/4.0": "8.0"
+      };
+
+      browser.IEVersion = Trident_Tokens[trident[0]] || browser.version;
+    }
+
     // Blackberry browsers are marked as Safari on BlackBerry
     if ( browser.safari && browser.blackberry ) {
       var blackberry = "blackberry";
